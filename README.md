@@ -1,5 +1,5 @@
 # hourly-drifters
-Matlab scripts to interpolate to hourly intervals the GDP dataset as described in Elipot et al, http://dx.doi.org/10.1002/2016JC011716
+Matlab scripts to interpolate to hourly intervals the GDP dataset as described in  Elipot S., R. Lumpkin, R. C. Perez, J. M. Lilly, J. J. Early, A. M. Sykulski (2016), A global surface drifter dataset at hourly resolution, J. Geophys. Res.-Oceans, 121, doi:10.1002/2016JC011716.
 
 These scripts were written in Matlab R2016a and require some routines from the jLab Matlab toolbox available at this repository:
 https://github.com/jonathanlilly/jLab
