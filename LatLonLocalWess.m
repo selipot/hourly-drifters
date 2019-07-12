@@ -6,7 +6,8 @@ function [lonlat,varargout] = LatLonLocalWess(ti,loni,lati,p,b,varargin)
 % polynomial estimator of order P with a variable bandwith of B points. 
 % LON and LAT are column vectors of the same length as TI, LONI and LATI.
 % The algorithm iterates 3 times.
-%Shane Elipot, University of Miami, RSMAS, selipot@rsmas.miami.edu, January 2017
+    
+% Shane Elipot, 2014, version 0
 
 % sort the input?
 [ti,I] = sort(ti);
@@ -34,7 +35,7 @@ if nout == 1
     varlonlat = NaN*lonlat;
 elseif nout == 2
     varlonlat = NaN*lonlat;
-    cd = NaN*ones(size(ti(:),1),2); % return the condition number of the matrix inversion and the number of data points used
+    cd = NaN*ones(size(ti(:),1),2); % return the condition number of the matrix inversion   
 end
 
 [n1,~] = size(ti);
@@ -110,6 +111,10 @@ for m = 1:N
                     % as diagnosed from significant digits
                     e1 = 22*10^-3;
                     e2 = 22*10^-3;
+                    % there might be an error here: see eq. 2.112 of
+                    % Wunsch's book; should be
+                    %C1 = R\X'*W*(e1*eye(length(q)))*W*X/R;
+                    %C2 = R\X'*W*(e2*eye(length(q)))*W*X/R;                    
                     C1 = R\X'*(e1*eye(length(q)))*W*X/R;
                     C2 = R\X'*(e2*eye(length(q)))*W*X/R;
 %                     if C1>mean(xi2.^2)
