@@ -109,14 +109,16 @@ for m = 1:N
                     %e2 = imag(X*beta - Y)'*imag(X*beta - Y)/(max(size(z,1)-2,2));
                     % use a GPS accuracy of 20/10^5 of degrees of latitude = 22 m,
                     % as diagnosed from significant digits
-                    e1 = 22*10^-3;
-                    e2 = 22*10^-3;
-                    % there might be an error here: see eq. 2.112 of
-                    % Wunsch's book; should be
-                    %C1 = R\X'*W*(e1*eye(length(q)))*W*X/R;
-                    %C2 = R\X'*W*(e2*eye(length(q)))*W*X/R;                    
-                    C1 = R\X'*(e1*eye(length(q)))*W*X/R;
-                    C2 = R\X'*(e2*eye(length(q)))*W*X/R;
+                    % OLD WRONG WAY
+%                     e1 = 22*10^-3;
+%                     e2 = 22*10^-3;
+%                     C1 = R\X'*(e1*eye(length(q)))*W*X/R;
+%                     C2 = R\X'*(e2*eye(length(q)))*W*X/R;
+                    % CORRECTED CODE STARTS HERE
+                    e1 = (22*10^-3)^2;
+                    e2 = (22*10^-3)^2;
+                    C1 = R\X'*W*(e1*eye(length(q)))*W*X/R;
+                    C2 = R\X'*W*(e2*eye(length(q)))*W*X/R;
 %                     if C1>mean(xi2.^2)
 %                         C1 = NaN;
 %                         C2 = NaN;
